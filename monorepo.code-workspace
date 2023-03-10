@@ -1,32 +1,26 @@
 {
-	"folders": [
-		{
-			"name": "ROOT",
-			"path": "."
-		},
-		{
-			"path": "apps/storybook"
-		},
-		{
-			"path": "apps/nuxt"
-		},
-		{
-			"path": "packages/eslint-config",
-		},
-		{
-			"path": "packages/tsconfig"
-		},
-		{
-			"path": "packages/pinia-store"
-		},
-		{
-			"path": "packages/ui"
-		},
-		{
-			"path": "packages/vitest"
-		},
-		{
-			"path": "packages/css-preset"
-		}
-	]
+  "folders": [
+    {
+      "name": "ROOT",
+      "path": "."
+    },
+    {
+      "path": "apps/storybook"
+    },
+    {
+      "path": "apps/nuxt"
+    },
+    {
+      "path": "packages/pinia-store"
+    },
+    {
+      "path": "packages/ui"
+    },
+    {
+      "path": "packages/vitest"
+    },
+    {
+      "path": "packages/css-preset"
+    }
+  ]
 }

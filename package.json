@@ -2,50 +2,62 @@
   "name": "monorepo-vue-starter",
   "version": "0.0.0",
   "private": true,
+  "bugs": {
+    "url": "https://github.com/Hahahahx/vue-turbo-starter.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hahahahx/vue-turbo-starter.git"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "preinstall": "npx only-allow pnpm",
-    "prepare": "simple-git-hooks",
-    "release": "tsx scripts/release.ts",
-    "start:apps": "turbo run start --parallel --filter='./apps/*'",
-    "start:nuxt-app": "turbo run start --filter nuxt-app",
-    "start:storybook": "turbo run start --filter storybook",
-    "start:vite-app": "turbo run start --filter vite-app",
+    "prepare": "husky install",
     "start": "turbo run start --parallel",
-    "test:watch": "vitest -w --dir",
+    "start:apps": "turbo run start --parallel --filter='./apps/*'",
     "test": "pnpm test --filter vitest",
+    "test:watch": "vitest -w --dir",
     "typecheck": "turbo run typecheck"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md,mdx}": [
+      "eslint",
+      "git add"
+    ],
+    "package.json": "npx sort-package-json"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "@types/prompts": "2.4.2",
     "@types/semver": "7.3.13",
-    "eslint-config-custom": "link:packages/eslint-config-custom",
     "conventional-changelog-cli": "2.2.2",
+    "eslint-config-custom": "link:packages/eslint-config-custom",
     "execa": "7.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "picocolors": "1.0.0",
     "prettier": "2.8.4",
     "prompts": "2.4.2",
     "semver": "7.3.8",
     "simple-git-hooks": "2.8.1",
+    "sort-package-json": "^2.3.0",
     "tsx": "3.12.3",
     "turbo": "1.8.3",
     "typescript": "4.9.5"
   },
+  "packageManager": "pnpm@7.29.0",
   "engines": {
-    "node": ">=18",
+    "node": ">=16",
     "pnpm": ">=7"
   },
-  "simple-git-hooks": {
-    "pre-push": "pnpm lint",
-    "commit-msg": "pnpm exec tsx scripts/verifyCommit.ts $1"
-  },
-  "packageManager": "pnpm@7.29.0",
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": ["@types/react"],
+      "ignoreMissing": [
+        "@types/react"
+      ],
       "allowedVersions": {
         "vite": "3"
       }
