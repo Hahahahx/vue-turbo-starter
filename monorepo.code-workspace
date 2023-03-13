@@ -21,6 +21,9 @@
     },
     {
       "path": "packages/css-preset"
+    },
+    {
+      "path": "packages/unocss-preset-theming"
     }
   ]
 }

@@ -2,7 +2,7 @@
  * @Author: 胡鑫 1219654535@qq.com
  * @Date: 2023-03-09 16:18:36
  * @LastEditors: Aaron.ux
- * @LastEditTime: 2023-03-10 10:50:06
+ * @LastEditTime: 2023-03-11 18:07:58
  * @FilePath: \vue-turbo-starter\packages\unocss-preset-theming\src\index.ts
  * @Description:
  *
@@ -10,8 +10,7 @@
  */
 import type { Preset, Rule } from '@unocss/core'
 import type { Theme } from '@unocss/preset-mini'
-import { mergeDeep } from '@unocss/core'
-import _ from 'lodash'
+import { set } from 'lodash-es'
 import { isHex, getRgbValue } from '@jiaminghi/color'
 
 export type ThemingOptions = Array<{
@@ -42,10 +41,11 @@ export function presetTheming (_options: ThemingOptions = []): Preset<Theme> {
     if (typeof theme.style === 'string') {
       theme.callBack(theme)
     } else {
-      Object.keys(theme.style).forEach((k) => {
-        convertColorVars({ ...theme, varName: `${theme.varName}-${k}`, keyName: theme.varName ? `${theme.varName}.${k}` : k })
+      Object.entries(theme.style).forEach(([k, v]) => {
+        convertColorVars({ ...theme, style: v, varName: `${theme.varName}-${k}`, keyName: theme.keyName ? `${theme.keyName}.${k}` : k })
       })
     }
+    return null
   }
 
   const generateCSS: string[] = []
@@ -58,17 +58,20 @@ export function presetTheming (_options: ThemingOptions = []): Preset<Theme> {
       varName: prefix,
       keyName: '',
       callBack (vars) {
-        if (usedTheme.includes(vars.varName)) {
-          rule[vars.varName] = getRgbValue(vars.style as string).join(',')
-        }
+        const isColor = isHex(vars.style as string)
+        // if (usedTheme.includes(vars.varName)) {
+        rule[vars.varName] = isColor ? getRgbValue(vars.style as string).join(',') : vars.style
+        // }
         // todo：判断是否是Color ， 进行转换
-        _.set(baseTheme, vars.keyName, isHex(vars.style as string) ? `rgb(var(${vars.varName}))` : `var(${vars.varName})`)
+        set(baseTheme, vars.keyName, isColor ? `rgb(var(${vars.varName}))` : `var(${vars.varName})`)
       },
     })
 
     t.selectors?.forEach((selector) => {
       generateCSS.push(`${selector}{ ${Object.keys(rule).map(k => `${k}:${rule[k]};`).join('')} }`)
     })
+
+    console.log('rule', rule)
 
     return [
       t.name,
@@ -78,10 +81,11 @@ export function presetTheming (_options: ThemingOptions = []): Preset<Theme> {
 
   return {
     name: 'unocss-preset-theming',
-    enforce: 'post',
-    layers: { theming: -5 },
-    extendTheme (originalTheme) {
-      mergeDeep(originalTheme, baseTheme)
+    // enforce: 'post',
+    // layers: { theming: -5 },
+    extendTheme (_originalTheme) {
+      console.log(_originalTheme)
+      // mergeDeep(originalTheme, baseTheme)
     },
     rules,
     preflights: [
@@ -92,6 +96,7 @@ export function presetTheming (_options: ThemingOptions = []): Preset<Theme> {
         },
       },
     ],
+    theme: baseTheme,
     postprocess (util) {
       util.entries.forEach(([, val]) => {
         if (typeof val === 'string') {

@@ -1,12 +1,20 @@
+<!--
+ * @Author: Aaron.ux
+ * @Date: 2023-03-07 14:40:32
+ * @LastEditors: Aaron.ux
+ * @LastEditTime: 2023-03-11 17:43:56
+ * @FilePath: \vue-turbo-starter\packages\ui\src\components\button\Button.vue
+ * @Description:
+ *
+-->
 <script lang="ts" setup>
-import { PropType } from 'vue'
+import { PropType, ref } from 'vue'
 import { ButtonType, ButtonEnum, ButtonIconSizeType, ButtonIconSizeEnum } from './Button.model'
-// eslint-disable-next-line import/order
 import IconSpinner from '@ui/components/icon/Spinner.vue'
 
-defineEmits<{(e: 'click'): void }>()
+const emit = defineEmits<{(e: 'click', event: MouseEvent): void }>()
 
-defineProps({
+const props = defineProps({
   prefix: {
     type: String,
     required: true,
@@ -40,17 +48,24 @@ const iconSizeClasses = {
   small: 'h-1 w-1',
   normal: 'h-1.5 w-1.5',
 }
+
+const inloading = ref(props.loading)
+
+const onClick = (event: MouseEvent) => {
+  emit('click', event)
+}
+
 </script>
 
 <template>
   <button
     :id="`${prefix}ButtonButton`"
     class="cursor-pointer flex justify-center items-center h-3 mb-0.5 overflow-hidden overflow-ellipsis whitespace-nowrap transition-opacity text-lg focus:(outline-none ring) p-4"
-    :class="[{'opacity-20 cursor-not-allowed': disabled}, classes[type]]"
-    :disabled="disabled"
-    @click="$emit('click')"
+    :class="[{ 'opacity-20 cursor-not-allowed': disabled }, { 'cursor-wait': loading }, classes[type]]"
+    :disabled="inloading || disabled"
+    @click="onClick"
   >
-    <IconSpinner v-if="loading" class="w-2 h-2" />
+    <IconSpinner v-if="inloading" class="h-10" />
     <div v-else class="flex items-center justify-center gap-0.25">
       <div v-if="$slots.icon" :class="iconSizeClasses[iconSize]">
         <slot name="icon" />
@@ -59,3 +74,6 @@ const iconSizeClasses = {
     </div>
   </button>
 </template>
+
+<style scoped>
+</style>

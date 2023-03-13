@@ -1,23 +1,21 @@
-import type { Preset } from '@unocss/core'
+
 import type { UnocssNuxtOptions } from '@unocss/nuxt'
-import type { Theme, PresetWindOptions } from '@unocss/preset-wind'
+import type { PresetWindOptions } from '@unocss/preset-wind'
 import { presetWind, transformerDirectives, transformerVariantGroup } from 'unocss'
 import { UserConfig } from '@unocss/core'
 import { rules } from './rules'
 import { presetTheme } from './theme'
 
-/**
- * Preset Vue Turbo for UnoCSS
- */
-export const presetVueTurbo = (): Preset<Theme> => {
-  return {
-    name: 'unocss-preset-vue-turbo',
-    rules,
-    safelist: [
-      'hidden',
-    ],
-    shortcuts: [],
-  }
+export enum ThemeMode {
+  Light = 'light',
+  Dark = 'dark',
+  Compact = 'compact',
+  IoSmaller = 'io-smaller',
+  IoSmall = 'io-small',
+  IoNormal = 'io-normal',
+  IoLarge = 'io-large',
+  IoLarger = 'io-larger',
+
 }
 
 interface CustomOptions {
@@ -26,8 +24,8 @@ interface CustomOptions {
    */
   customPresetWindOptions?: PresetWindOptions
 }
-interface CustomUserConfig extends UserConfig, CustomOptions { }
-interface CustomNuxtConfig extends UnocssNuxtOptions, CustomOptions { }
+interface CustomUserConfig extends UserConfig, CustomOptions {}
+interface CustomNuxtConfig extends UnocssNuxtOptions, CustomOptions {}
 
 /**
  * Extends unocss/vite Plugin Options Config
@@ -35,12 +33,12 @@ interface CustomNuxtConfig extends UnocssNuxtOptions, CustomOptions { }
 export const extendUnocssOptions = ({ customPresetWindOptions, ...options }: CustomUserConfig = {}): UserConfig => {
   return {
     ...options,
+    rules,
     presets: [
       presetWind({
         ...(customPresetWindOptions || {}),
       }),
-      presetTheme(),
-      presetVueTurbo(),
+      presetTheme,
       ...(options.presets || []),
     ],
     transformers: [
