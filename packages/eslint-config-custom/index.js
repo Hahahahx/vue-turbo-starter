@@ -1,12 +1,3 @@
-/*
- * @Author: Aaron.ux
- * @Date: 2023-03-08 16:59:34
- * @LastEditors: Aaron.ux
- * @LastEditTime: 2023-03-13 10:15:57
- * @FilePath: \vue-turbo-starter\packages\eslint-config-custom\index.js
- * @Description:
- *
- */
 // @ts-check
 const { defineConfig } = require('eslint-define-config')
 
