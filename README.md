@@ -8,7 +8,7 @@
     </a>
     <a href="https://vitejs.dev" target="_blank">
         <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Vite&color=646CFF&logo=Vite&logoColor=FFFFFF&label=">
-    </a> 
+    </a>
     <a href="https://github.com/vuejs/core" target="_blank">
         <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Vue.js&color=222222&logo=Vue.js&logoColor=4FC08D&label=">
     </a>
@@ -23,10 +23,10 @@
     </a>
     <a href="https://github.com/storybooks/storybook" target="_blank">
         <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Storybook&color=FF4785&logo=Storybook&logoColor=FFFFFF&label=">
-    </a> 
+    </a>
     <a href="https://github.com/vercel/turborepo" target="_blank">
         <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Turborepo%20by%20Vercel&color=000000&logo=Vercel&logoColor=FFFFFF&label=">
-    </a>  
+    </a>
 </p>
 
 Demo - Nuxt:
@@ -63,14 +63,14 @@ uses:
 
 ### GitHub Template
 
-[Create a repo from this template on GitHub](https://github.com/samydoesit/vue-turbo-starter/generate).
+[Create a repo from this template on GitHub](https://github.com/Hahahahx/vue-turbo-starter/generate).
 
 ### Clone to local
 
 If you prefer to do it manually with the cleaner git history
 
 ```bash
-npx degit samydoesit/vue-turbo-starter my-vue-turbo-starter-monorepo
+npx degit Hahahahx/vue-turbo-starter my-vue-turbo-starter-monorepo
 cd my-vue-turbo-starter-monorepo
 pnpm i # If you don't have pnpm installed, run: `corepack enable` (or use `npm i -g corepack` for Node.js < 16.10)
 ```
