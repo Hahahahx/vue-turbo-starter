@@ -8,11 +8,11 @@
  *
 -->
 <script lang="ts" setup>
-import { PropType, ref } from 'vue'
-import { ButtonType, ButtonEnum, ButtonIconSizeType, ButtonIconSizeEnum } from './Button.model'
+import type { PropType } from 'vue'
+import { ref } from 'vue'
 import IconSpinner from '@ui/components/icon/Spinner.vue'
-
-const emit = defineEmits<{(e: 'click', event: MouseEvent): void }>()
+import type { ButtonIconSizeType, ButtonType } from './Button.model'
+import { ButtonEnum, ButtonIconSizeEnum } from './Button.model'
 
 const props = defineProps({
   prefix: {
@@ -37,6 +37,8 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits<{ (e: 'click', event: MouseEvent): void }>()
+
 const classes = {
   primary: 'bg-primary text-white w-full border-primary border-2 border-solid rounded-md active:(bg-primary-700 border-primary-700)',
   secondary: 'bg-transparent text-primary w-full border-primary border-2 border-solid rounded-md active:(text-primary-700 border-primary-700)',
@@ -54,7 +56,6 @@ const inloading = ref(props.loading)
 const onClick = (event: MouseEvent) => {
   emit('click', event)
 }
-
 </script>
 
 <template>
