@@ -4,6 +4,8 @@ const { defineConfig } = require('eslint-define-config')
 module.exports = defineConfig({
   extends: ['@antfu'],
   rules: {
+    'max-statements-per-line': 'off',
+    'no-console': 'warn',
     'comma-dangle': [
       'error',
       'always-multiline',
