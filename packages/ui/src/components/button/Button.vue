@@ -1,12 +1,3 @@
-<!--
- * @Author: Aaron.ux
- * @Date: 2023-03-07 14:40:32
- * @LastEditors: Aaron.ux
- * @LastEditTime: 2023-03-11 17:43:56
- * @FilePath: \vue-turbo-starter\packages\ui\src\components\button\Button.vue
- * @Description:
- *
--->
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import { ref } from 'vue'
