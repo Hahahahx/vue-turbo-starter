@@ -1,3 +1,4 @@
-import CustomButton from './components/button/Button.vue'
-import CustomInput from './components/CustomInput/CustomInput.vue'
-export { CustomButton, CustomInput }
+import Button from './components/button/Button.vue'
+import Input from './components/input/Input.vue'
+import Group from './components/group/Group.vue'
+export { Button, Input, Group }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Button from './Button.vue'
+import Button from '../input/Button.vue'
 
 // const types = ['primary', 'secondary', 'tertiary']
 describe('Test Button Button', () => {

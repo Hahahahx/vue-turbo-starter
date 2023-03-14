@@ -1,22 +1,23 @@
 import type { Meta, StoryFn } from '@storybook/vue3'
 import IconCamera from '../icon/Camera.vue'
-import Button from './Button.vue'
-import { ButtonEnum, ButtonIconSizeEnum } from './Button.model'
+import Button from '../input/Button.vue'
+import { ButtonEnum, ButtonIconSizeEnum, ButtonSizeEnum } from './Button.model'
 
 export default {
   component: { Button },
   title: 'Button',
   args: {
     type: '',
-    text: 'Button Button',
+    text: 'Button',
     icon: false,
+    size: ButtonSizeEnum.Normal,
     iconSize: ButtonIconSizeEnum.Normal,
     disabled: false,
     loading: false,
   },
   argTypes: {
     type: {
-      options: [ButtonEnum.Primary, ButtonEnum.Secondary, ButtonEnum.Tertiary, ButtonEnum.Quaternary],
+      options: [ButtonEnum.Contained, ButtonEnum.Outline, ButtonEnum.Text],
       control: { type: 'select' },
     },
     iconSize: {
@@ -34,23 +35,18 @@ const Template: StoryFn<typeof Button> = args => ({
   template: '<Button v-bind="args"><template v-if="args.icon" #icon><IconCamera /></template>{{ args.text }}</Button>',
 })
 
-export const Primary = Template.bind({})
-Primary.args = {
-  type: ButtonEnum.Primary,
-  prefix: 'Primary',
+export const Contained = Template.bind({})
+Contained.args = {
+  type: ButtonEnum.Contained,
+  prefix: 'Contained',
 }
-export const Secondary = Template.bind({})
-Secondary.args = {
-  type: ButtonEnum.Secondary,
-  prefix: 'Secondary',
+export const Outline = Template.bind({})
+Outline.args = {
+  type: ButtonEnum.Outline,
+  prefix: 'Outline',
 }
-export const Tertiary = Template.bind({})
-Tertiary.args = {
-  type: ButtonEnum.Tertiary,
-  prefix: 'Tertiary',
-}
-export const Quaternary = Template.bind({})
-Quaternary.args = {
-  type: ButtonEnum.Quaternary,
-  prefix: 'Quaternary',
+export const Text = Template.bind({})
+Text.args = {
+  type: ButtonEnum.Text,
+  prefix: 'Text',
 }

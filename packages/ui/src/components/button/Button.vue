@@ -1,18 +1,17 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import { ref } from 'vue'
-import IconSpinner from '@ui/components/icon/Spinner.vue'
-import type { ButtonIconSizeType, ButtonType } from './Button.model'
-import { ButtonEnum, ButtonIconSizeEnum } from './Button.model'
+import type { ButtonIconSizeType, ButtonSizeType, ButtonType } from '../button/Button.model'
+import { ButtonEnum, ButtonIconSizeEnum, ButtonSizeEnum } from '../button/Button.model'
 
 const props = defineProps({
-  prefix: {
-    type: String,
-    required: true,
-  },
-  type: {
+  variant: {
     type: String as PropType<ButtonType>,
-    default: ButtonEnum.Primary,
+    default: ButtonEnum.Contained,
+  },
+  size: {
+    type: String as PropType<ButtonSizeType>,
+    default: ButtonSizeEnum.None,
   },
   iconSize: {
     type: String as PropType<ButtonIconSizeType>,
@@ -31,10 +30,18 @@ const props = defineProps({
 const emit = defineEmits<{ (e: 'click', event: MouseEvent): void }>()
 
 const classes = {
-  primary: 'bg-primary text-white w-full border-primary border-2 border-solid rounded-md active:(bg-primary-700 border-primary-700)',
-  secondary: 'bg-transparent text-primary w-full border-primary border-2 border-solid rounded-md active:(text-primary-700 border-primary-700)',
-  tertiary: 'bg-white text-normal w-full border-2 border-gray-400 border-solid rounded-full',
-  quaternary: 'bg-white text-normal border-2 border-gray border-solid rounded-full shadow-lg',
+  contained: 'border-1 border-solid border-primary-lighter text-white bg-primary hover:(bg-primary-light border-primary-dark) focus:(ring-3 ring-primary/20)',
+  outline: 'border-1 border-solid border-primary-lighter text-primary hover:(bg-primary-light/5 border-primary-dark) focus:(ring-3 ring-primary/20)',
+  text: 'text-primary hover:(bg-primary-light/5 border-primary-dark)',
+}
+
+const sizeClasses = {
+  smaller: 'io-smaller',
+  small: 'io-small',
+  normal: 'io-normal',
+  large: 'io-large',
+  larger: 'io-larger',
+  none: '',
 }
 
 const iconSizeClasses = {
@@ -42,7 +49,7 @@ const iconSizeClasses = {
   normal: 'h-1.5 w-1.5',
 }
 
-const inloading = ref(props.loading)
+const inLoading = ref(props.loading)
 
 const onClick = (event: MouseEvent) => {
   emit('click', event)
@@ -51,13 +58,11 @@ const onClick = (event: MouseEvent) => {
 
 <template>
   <button
-    :id="`${prefix}ButtonButton`"
-    class="cursor-pointer flex justify-center items-center h-3 mb-0.5 overflow-hidden overflow-ellipsis whitespace-nowrap transition-opacity text-lg focus:(outline-none ring) p-4"
-    :class="[{ 'opacity-20 cursor-not-allowed': disabled }, { 'cursor-wait': loading }, classes[type]]"
-    :disabled="inloading || disabled"
+    class="btn io-size" :class="[{ 'zinc cursor-not-allowed ring-0 text-zinc-300': disabled },
+                                 { 'cursor-wait': inLoading }, classes[variant], sizeClasses[size]]" :disabled="inLoading || disabled"
     @click="onClick"
   >
-    <IconSpinner v-if="inloading" class="h-10" />
+    <div v-if="inLoading" class="i-svg-spinners-180-ring-with-bg " />
     <div v-else class="flex items-center justify-center gap-0.25">
       <div v-if="$slots.icon" :class="iconSizeClasses[iconSize]">
         <slot name="icon" />
@@ -67,5 +72,8 @@ const onClick = (event: MouseEvent) => {
   </button>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
+.btn {
+  @apply rounded-md transition-colors duration-300 px-4 font-medium outline-none align-middle;
+}
 </style>

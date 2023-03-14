@@ -1,15 +1,23 @@
-export type ButtonType = 'primary' | 'secondary' | 'tertiary' | 'quaternary'
-
+export type ButtonType = 'contained' | 'outline' | 'text'
+export type ButtonSizeType = 'smaller' | 'small' | 'normal' | 'large' | 'larger'
 export type ButtonIconSizeType = 'small' | 'normal'
 
 export enum ButtonEnum {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-  Quaternary = 'quaternary',
+  Contained = 'contained',
+  Outline = 'outline',
+  Text = 'text',
 }
 
 export enum ButtonIconSizeEnum {
   Small = 'small',
   Normal = 'normal',
+}
+
+export enum ButtonSizeEnum {
+  Smaller = 'smaller',
+  Small = 'small',
+  Normal = 'normal',
+  Large = 'large',
+  Larger = 'larger',
+  None = '',
 }
