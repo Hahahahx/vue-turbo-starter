@@ -35,8 +35,8 @@ const sizeClasses = {
 }
 
 const directionClass = {
-  row: 'group-row',
-  col: 'group-col',
+  row: '[&>.group-item]:(rounded-none border-r-0) first:[&>.group-item]:rounded-l last:[&>.group-item]:rounded-r',
+  col: '[&>.group-item]:(rounded-none border-b-0 block w-full) first:[&>.group-item]:rounded-t last:[&>.group-item]:(rounded-b border-b-1)',
 }
 </script>
 
@@ -45,12 +45,3 @@ const directionClass = {
     <slot class="group-item" />
   </div>
 </template>
-
-<style>
-.group-row {
-  @apply [&>.group-item]:(rounded-none border-r-0) first:[&>.group-item]:rounded-l last:[&>.group-item]:rounded-r;
-}
-.group-col {
-  @apply [&>.group-item]:(rounded-none border-b-0 block w-full) first:[&>.group-item]:rounded-t last:[&>.group-item]:(rounded-b border-b-1);
-}
-</style>
