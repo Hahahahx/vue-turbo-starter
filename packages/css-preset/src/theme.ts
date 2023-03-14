@@ -1,12 +1,3 @@
-/*
- * @Author: Aaron.ux
- * @Date: 2023-03-10 10:12:50
- * @LastEditors: Aaron.ux
- * @LastEditTime: 2023-03-11 16:25:49
- * @FilePath: \vue-turbo-starter\packages\css-preset\src\theme.ts
- * @Description:
- *
- */
 import presetTheming from 'unocss-preset-theming'
 import { colors, theme } from '@unocss/preset-mini'
 
@@ -75,6 +66,7 @@ export const presetTheme = presetTheming([
       io: {
         height: '22px',
         padding: '0 12px 0 12px',
+        fontSize: theme.fontSize?.sm[0],
       },
     },
   },
@@ -84,6 +76,7 @@ export const presetTheme = presetTheming([
       io: {
         height: '26px',
         padding: '0 14px 0 14px',
+        fontSize: theme.fontSize?.base[0],
       },
     },
   },
@@ -93,6 +86,7 @@ export const presetTheme = presetTheming([
       io: {
         height: '30px',
         padding: '0 16px 0 16px',
+        fontSize: theme.fontSize?.base[0],
       },
     },
     selectors: [':root'],
@@ -103,6 +97,7 @@ export const presetTheme = presetTheming([
       io: {
         height: '34px',
         padding: '0 18px 0 18px',
+        fontSize: theme.fontSize?.base[0],
       },
     },
   },
@@ -112,6 +107,7 @@ export const presetTheme = presetTheming([
       io: {
         height: '38px',
         padding: '0 20px 0 20px',
+        fontSize: theme.fontSize?.lg[0],
       },
     },
   },

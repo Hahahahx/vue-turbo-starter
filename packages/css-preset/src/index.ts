@@ -1,22 +1,10 @@
-
 import type { UnocssNuxtOptions } from '@unocss/nuxt'
 import type { PresetWindOptions } from '@unocss/preset-wind'
-import { presetWind, transformerDirectives, transformerVariantGroup } from 'unocss'
-import { UserConfig } from '@unocss/core'
+import { presetAttributify, presetIcons, presetMini, presetUno, presetWind, transformerDirectives, transformerVariantGroup } from 'unocss'
+import type { UserConfig } from '@unocss/core'
 import { rules } from './rules'
 import { presetTheme } from './theme'
-
-export enum ThemeMode {
-  Light = 'light',
-  Dark = 'dark',
-  Compact = 'compact',
-  IoSmaller = 'io-smaller',
-  IoSmall = 'io-small',
-  IoNormal = 'io-normal',
-  IoLarge = 'io-large',
-  IoLarger = 'io-larger',
-
-}
+import { shortcuts } from './shortcuts'
 
 interface CustomOptions {
   /**
@@ -34,7 +22,15 @@ export const extendUnocssOptions = ({ customPresetWindOptions, ...options }: Cus
   return {
     ...options,
     rules,
+    shortcuts,
     presets: [
+      presetUno(),
+      presetMini(),
+      presetAttributify(),
+      presetIcons({
+        scale: 1.2,
+        cdn: 'https://esm.sh/',
+      }),
       presetWind({
         ...(customPresetWindOptions || {}),
       }),
@@ -52,7 +48,7 @@ export const extendUnocssOptions = ({ customPresetWindOptions, ...options }: Cus
 /**
  * Extends unocss/nuxt Plugin Options Config
  */
-export function extendUnocssNuxtOptions (options: CustomNuxtConfig = {}): UnocssNuxtOptions {
+export function extendUnocssNuxtOptions(options: CustomNuxtConfig = {}): UnocssNuxtOptions {
   return {
     preflight: true,
     ...extendUnocssOptions(options),
