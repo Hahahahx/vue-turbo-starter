@@ -57,11 +57,15 @@ importers:
       tsconfig: workspace:*
       typescript: 4.9.5
       ui: workspace:*
+      vee-validate: ^4.6.2
       vue-toastification: 2.0.0-rc.5
       vue-tsc: ^1.0.24
+      yup: ^0.32.11
     dependencies:
       '@nuxtjs/i18n': registry.npmmirror.com/@nuxtjs/i18n/8.0.0-beta.9
       '@vueuse/nuxt': registry.npmmirror.com/@vueuse/nuxt/9.13.0_nuxt@3.2.3
+      vee-validate: registry.npmmirror.com/vee-validate/4.8.3
+      yup: registry.npmmirror.com/yup/0.32.11
     devDependencies:
       '@nuxt/devtools': 0.2.5_nuxt@3.2.3
       '@pinia/nuxt': 0.4.7_typescript@4.9.5
@@ -155,6 +159,14 @@ importers:
       vite-plugin-vue-type-imports: 0.2.4_vite@4.1.4+vue@3.2.47
       vue: 3.2.47
       webpack: 5.75.0
+
+  packages/composables:
+    specifiers:
+      vee-validate: ^4.6.2
+      yup: ^0.32.11
+    dependencies:
+      vee-validate: registry.npmmirror.com/vee-validate/4.8.3
+      yup: registry.npmmirror.com/yup/0.32.11
 
   packages/css-preset:
     specifiers:
@@ -1489,13 +1501,6 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/runtime/7.18.9:
-    resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.9
-    dev: true
-
   /@babel/standalone/7.20.12:
     resolution: {integrity: sha512-hK/X+m1il3w1tYS4H8LDaGCEdiT47SVqEXY8RiEAgou26BystipSU8ZL6EvBR6t5l7lTv0ilBiChXWblKJ5iUA==}
     engines: {node: '>=6.9.0'}
@@ -2686,7 +2691,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@babel/code-frame': registry.npmmirror.com/@babel/code-frame/7.18.6
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
       '@types/aria-query': 4.2.2
       aria-query: 5.0.0
       chalk: registry.npmmirror.com/chalk/4.1.2
@@ -2700,7 +2705,7 @@ packages:
     engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
     dependencies:
       '@adobe/css-tools': 4.0.1
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
       '@types/testing-library__jest-dom': 5.14.5
       aria-query: 5.0.0
       chalk: registry.npmmirror.com/chalk/3.0.0
@@ -2716,7 +2721,7 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
       '@testing-library/dom': 8.17.1
     dev: true
 
@@ -10221,7 +10226,7 @@ packages:
     peerDependencies:
       vue: ^3.2.0
     dependencies:
-      '@vue/devtools-api': 6.5.0
+      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.5.0
       vue: 3.2.47
 
   /vue-toastification/2.0.0-rc.5:
@@ -12239,7 +12244,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.9
-    dev: true
 
   registry.npmmirror.com/@babel/standalone/7.20.12:
     resolution: {integrity: sha512-hK/X+m1il3w1tYS4H8LDaGCEdiT47SVqEXY8RiEAgou26BystipSU8ZL6EvBR6t5l7lTv0ilBiChXWblKJ5iUA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/standalone/-/standalone-7.20.12.tgz}
@@ -16655,7 +16659,6 @@ packages:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.5.0.tgz}
     name: '@vue/devtools-api'
     version: 6.5.0
-    dev: false
 
   registry.npmmirror.com/@vue/reactivity-transform/3.2.47:
     resolution: {integrity: sha512-m8lGXw8rdnPVVIdIFhf0LeQ/ixyHkH5plYuS83yop5n7ggVJU+z5v0zecwEnX7fa7HNLBhh2qngJJkxpwEEmYA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/reactivity-transform/-/reactivity-transform-3.2.47.tgz}
@@ -23729,6 +23732,12 @@ packages:
     dev: true
     optional: true
 
+  registry.npmmirror.com/nanoclone/0.2.1:
+    resolution: {integrity: sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nanoclone/-/nanoclone-0.2.1.tgz}
+    name: nanoclone
+    version: 0.2.1
+    dev: false
+
   registry.npmmirror.com/nanoid/3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nanoid/-/nanoid-3.3.4.tgz}
     name: nanoid
@@ -24563,6 +24572,12 @@ packages:
       react-is: registry.npmmirror.com/react-is/16.13.1
     dev: true
 
+  registry.npmmirror.com/property-expr/2.0.5:
+    resolution: {integrity: sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/property-expr/-/property-expr-2.0.5.tgz}
+    name: property-expr
+    version: 2.0.5
+    dev: false
+
   registry.npmmirror.com/proxy-addr/2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/proxy-addr/-/proxy-addr-2.0.7.tgz}
     name: proxy-addr
@@ -25051,7 +25066,6 @@ packages:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz}
     name: regenerator-runtime
     version: 0.13.9
-    dev: true
 
   registry.npmmirror.com/regenerator-transform/0.15.0:
     resolution: {integrity: sha512-LsrGtPmbYg19bcPHwdtmXwbW+TqNvtY4riE3P83foeHRroMbH6/2ddFBfab3t7kbzc7v7p4wbkIecHImqt0QNg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/regenerator-transform/-/regenerator-transform-0.15.0.tgz}
@@ -26115,6 +26129,12 @@ packages:
     version: 1.0.0
     dev: true
 
+  registry.npmmirror.com/toposort/2.0.2:
+    resolution: {integrity: sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/toposort/-/toposort-2.0.2.tgz}
+    name: toposort
+    version: 2.0.2
+    dev: false
+
   registry.npmmirror.com/totalist/3.0.0:
     resolution: {integrity: sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/totalist/-/totalist-3.0.0.tgz}
     name: totalist
@@ -26876,6 +26896,16 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
+  registry.npmmirror.com/vee-validate/4.8.3:
+    resolution: {integrity: sha512-/RcxZH7mnyG1DLXMxc+70llcDFagwkfebs2Yhd5Xmoe95cosNDus5L2g5iDsShZBVUTRBE0ceLHW/FcURvaeDA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vee-validate/-/vee-validate-4.8.3.tgz}
+    name: vee-validate
+    version: 4.8.3
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.5.0
+    dev: false
+
   registry.npmmirror.com/void-elements/3.1.0:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/void-elements/-/void-elements-3.1.0.tgz}
     name: void-elements
@@ -27469,3 +27499,18 @@ packages:
     version: 1.0.0
     engines: {node: '>=12.20'}
     dev: true
+
+  registry.npmmirror.com/yup/0.32.11:
+    resolution: {integrity: sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/yup/-/yup-0.32.11.tgz}
+    name: yup
+    version: 0.32.11
+    engines: {node: '>=10'}
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.18.9
+      '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.182
+      lodash: registry.npmmirror.com/lodash/4.17.21
+      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
+      nanoclone: registry.npmmirror.com/nanoclone/0.2.1
+      property-expr: registry.npmmirror.com/property-expr/2.0.5
+      toposort: registry.npmmirror.com/toposort/2.0.2
+    dev: false

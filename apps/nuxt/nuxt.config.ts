@@ -14,7 +14,13 @@ export default defineNuxtConfig({
     // 'uno.css',
   ],
   components: [{ path: '../../packages/ui/src/components', extensions: ['vue'] }],
-
+  imports: {
+    dirs: [
+      '../../packages/composables/src',
+      '../../packages/composables/src/*/index.{ts,js.mjs,mts}',
+      '../../packages/composables/src/**',
+    ],
+  },
   experimental: {
     payloadExtraction: false,
     inlineSSRStyles: false,
