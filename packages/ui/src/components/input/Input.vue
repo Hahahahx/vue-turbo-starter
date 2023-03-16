@@ -35,9 +35,9 @@ const props = defineProps({
 const emit = defineEmits<{ (e: 'click', event: MouseEvent): void }>()
 
 const classes = {
-  contained: 'border-1 border-solid border-primary-lighter text-white bg-primary-light hover:(bg-primary-lighter border-primary) focus:(ring-3 ring-primary/20) shadow-primary-darker/50 ',
-  outline: 'border-1 border-solid border-primary-lighter text-primary hover:(bg-primary-light/5 border-primary-dark) focus:(ring-3 ring-primary/20) shadow-primary/10',
-  text: 'text-primary hover:(bg-primary-light/5 border-primary-dark) shadow-primary/20 ',
+  contained: 'input-contained',
+  outline: 'input-outline',
+  text: 'input-text',
 }
 
 const sizeClasses = {
@@ -70,14 +70,33 @@ const onClick = (event: MouseEvent) => {
 
 <template>
   <input
-    class="input io-size" :class="[{ 'zinc cursor-not-allowed ring-0 text-zinc-300': disabled },
-                                   { 'cursor-wait': inLoading }, classes[variant], sizeClasses[size]]"
+    class="input io-group-item group-item" :class="[{ disabled }, { loading: inLoading }, classes[variant], sizeClasses[size]]"
     :disabled="inLoading || disabled" :type="inType"
   >
 </template>
 
 <style lang="postcss" scoped>
 .input {
-  @apply shadow-inner rounded-md transition-colors duration-300 px-4 font-semibold outline-none align-middle;
+  @apply shadow-inner rounded transition-colors duration-300 px-4 font-semibold outline-none align-middle truncate io-size;
+
+  &.disabled {
+    @apply zinc cursor-not-allowed ring-0 text-zinc-300;
+  }
+
+  &.loading {
+    @apply cursor-wait;
+  }
+
+  &.input-contained {
+    @apply border-1 border-solid border-primary-lighter text-white bg-primary-light hover:(bg-primary-lighter border-primary/50) focus:(ring-3 ring-primary/20) shadow-primary-darker/50;
+  }
+
+  &.input-outline {
+    @apply border-1 border-solid border-primary-lighter text-primary hover:(bg-primary-light/5 border-primary-dark/70) focus:(ring-3 ring-primary/20) shadow-primary/10;
+  }
+
+  &.input-text {
+    @apply bg-transparent hover:(bg-primary-light/5 border-primary-dark) shadow-primary/20;
+  }
 }
 </style>

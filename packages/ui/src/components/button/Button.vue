@@ -30,9 +30,9 @@ const props = defineProps({
 const emit = defineEmits<{ (e: 'click', event: MouseEvent): void }>()
 
 const classes = {
-  contained: 'border-1 border-solid border-primary-lighter text-white bg-primary hover:(bg-primary-light border-primary-dark) focus:(ring-3 ring-primary/20)',
-  outline: 'border-1 border-solid border-primary-lighter text-primary hover:(bg-primary-light/5 border-primary-dark) focus:(ring-3 ring-primary/20)',
-  text: 'text-primary hover:(bg-primary-light/5 border-primary-dark)',
+  contained: 'btn-contained',
+  outline: 'btn-outline',
+  text: 'btn-text',
 }
 
 const sizeClasses = {
@@ -58,9 +58,8 @@ const onClick = (event: MouseEvent) => {
 
 <template>
   <button
-    class="btn io-size" :class="[{ 'zinc cursor-not-allowed ring-0 text-zinc-300': disabled },
-                                 { 'cursor-wait': inLoading }, classes[variant], sizeClasses[size]]" :disabled="inLoading || disabled"
-    @click="onClick"
+    class="btn io-group-item group-item" :class="[{ disabled }, { loading: inLoading }, classes[variant], sizeClasses[size]]"
+    :disabled="inLoading || disabled" @click="onClick"
   >
     <div v-if="inLoading" class="i-svg-spinners-180-ring-with-bg " />
     <div v-else class="flex items-center justify-center gap-0.25">
@@ -74,6 +73,26 @@ const onClick = (event: MouseEvent) => {
 
 <style lang="postcss" scoped>
 .btn {
-  @apply rounded-md transition-colors duration-300 px-4 font-medium outline-none align-middle;
+  @apply rounded transition-colors duration-300 px-4 font-medium outline-none align-middle io-size;
+
+  &.disabled {
+    @apply zinc cursor-not-allowed ring-0 text-zinc-300;
+  }
+
+  &.loading{
+    @apply cursor-wait;
+  }
+
+  &.btn-contained {
+    @apply border-1 border-solid border-primary-lighter text-white bg-primary hover:(bg-primary-light border-primary-dark) focus:(ring-3 ring-primary/20);
+  }
+
+  &.btn-outline {
+    @apply border-1 border-solid border-primary-lighter text-primary hover:(bg-primary-light/5 border-primary-dark) focus:(ring-3 ring-primary/20);
+  }
+
+  &.btn-text {
+    @apply text-primary bg-transparent hover:(bg-primary-light/5 border-primary-dark);
+  }
 }
 </style>

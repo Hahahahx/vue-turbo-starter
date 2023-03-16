@@ -35,13 +35,26 @@ const sizeClasses = {
 }
 
 const directionClass = {
-  row: '[&>.group-item]:(rounded-none border-r-0) first:[&>.group-item]:rounded-l last:[&>.group-item]:rounded-r',
-  col: '[&>.group-item]:(rounded-none border-b-0 block w-full) first:[&>.group-item]:rounded-t last:[&>.group-item]:(rounded-b border-b-1)',
+  row: 'group-row',
+  col: 'group-col',
 }
 </script>
 
 <template>
   <div :class="[directionClass[direction], sizeClasses[size]]">
-    <slot class="group-item" />
+    <slot />
   </div>
 </template>
+
+<style lang="postcss">
+.group-row{
+  .group-item{
+    @apply rounded-none first:(rounded-l) last:(rounded-r) not-last:border-r-0
+  }
+}
+.group-col{
+  .group-item{
+    @apply block w-full rounded-none first:(rounded-t) last:(rounded-b) not-last:border-b-0
+  }
+}
+</style>
