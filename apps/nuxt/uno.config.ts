@@ -1,4 +1,3 @@
-
 import { defineConfig } from 'unocss'
 import { extendUnocssOptions } from 'css-preset'
 
@@ -7,5 +6,6 @@ export default defineConfig({
   include: [
     '**.ts',
     '**.vue',
+    'ui/src/components/**.vue',
   ],
 })

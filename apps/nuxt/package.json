@@ -2,29 +2,33 @@
   "name": "nuxt-app",
   "version": "0.0.0",
   "scripts": {
-    "dev": "nuxi dev",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore"
+    "dev": "nuxi dev",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@nuxtjs/i18n": "8.0.0-beta.9",
+    "@vueuse/nuxt": "^9.13.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.2.5",
     "@pinia/nuxt": "0.4.7",
+    "@unocss/nuxt": "^0.50.4",
     "css-preset": "workspace:*",
-    "jsbarcode": "3.11.5",
-    "mitt": "3.0.0",
     "nuxt": "3.2.3",
-    "pinia-store": "workspace:*",
     "pinia": "2.0.33",
-    "sass-loader": "13.2.0",
-    "sass": "1.58.3",
+    "pinia-store": "workspace:*",
+    "postcss-nested": "^6.0.0",
     "tsconfig": "workspace:*",
     "typescript": "4.9.5",
     "ui": "workspace:*",
-    "vite-plugin-vue-type-imports": "0.2.4",
-    "vite": "4.1.4",
     "vue-toastification": "2.0.0-rc.5",
-    "vue": "3.2.47",
-    "webpack": "5.75.0"
+    "vue-tsc": "^1.0.24"
+  },
+  "pnpm": {
+    "overrides": {
+      "vue": "3.2.45"
+    }
   }
 }
